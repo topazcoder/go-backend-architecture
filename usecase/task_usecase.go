@@ -24,9 +24,3 @@ func (tu *taskUsecase) Create(c context.Context, task *domain.Task) error {
 	defer cancel()
 	return tu.taskRepository.Create(ctx, task)
 }
-
-func (tu *taskUsecase) FetchByUserID(c context.Context, userID string) ([]domain.Task, error) {
-	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
-	defer cancel()
-	return tu.taskRepository.FetchByUserID(ctx, userID)
-}
