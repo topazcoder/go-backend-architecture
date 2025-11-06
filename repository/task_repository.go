@@ -14,6 +14,13 @@ type taskRepository struct {
 	collection string
 }
 
+func NewTaskRepository(db mongo.Database, collection string) domain.TaskRepository {
+	return &taskRepository{
+		database:   db,
+		collection: collection,
+	}
+}
+
 func (tr *taskRepository) Create(c context.Context, task *domain.Task) error {
 	collection := tr.database.Collection(tr.collection)
 
